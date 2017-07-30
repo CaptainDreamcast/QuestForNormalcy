@@ -1,2 +1,2 @@
 OBJS = main.o bg.o button.o congratsscreen.o debris.o enemy.o \
-enemygenerator.o gamescreen.o introscreen.o player.o title.o ui.o
+enemygenerator.o gamescreen.o introscreen.o player.o title.o ui.o readytext.o

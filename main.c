@@ -21,6 +21,7 @@ extern uint8 romdisk[];
 KOS_INIT_ROMDISK(romdisk);
 #endif
 
+#define DEVELOP
 
 void exitGame() {
 	shutdownTariWrapper();
@@ -58,7 +59,7 @@ int main(int argc, char** argv) {
 
 	setMainFileSystem();
 	
-	setScreenAfterWrapperLogoScreen(&GameScreen);
+	setScreenAfterWrapperLogoScreen(&TitleScreen);
 	startScreenHandling(getLogoScreenFromWrapper());
 
 	exitGame();

@@ -14,17 +14,20 @@ deploy: clean build_images to_romdisk build_deploy
 build_images: copy_debug genlevels
 
 copy_debug:
-	$(KOS_BASE)/utils/kmgenc/kmgenc -a4 $(wildcard assets/debug/*.png)
-	find assets/debug -name '*.kmg' | xargs $(KOS_BASE)/addons/libtari/tools/bin/kompressor
-	$(KOS_BASE)/utils/kmgenc/kmgenc -a4 $(wildcard assets/fonts/*.png)
-	find assets/fonts -name '*.kmg' | xargs $(KOS_BASE)/addons/libtari/tools/bin/kompressor
 	mkdir romdisk_boot
 	mkdir romdisk_boot/fonts
-	cp assets/fonts/* romdisk_boot/fonts
-	find romdisk_boot/fonts/ -name '*.png' | xargs rm -f
-	find romdisk_boot/fonts/ -name '*.kmg' | xargs rm -f
 	mkdir romdisk_boot/debug
-	cp assets/debug/*.pkg romdisk_boot/debug
+	cp $(KOS_BASE)/addons/libtari/assets/debug/* romdisk_boot/debug
+	cp $(KOS_BASE)/addons/libtari/assets/fonts/segoe.hdr romdisk_boot/fonts/segoe.hdr
+	cp $(KOS_BASE)/addons/libtari/assets/fonts/segoe.png romdisk_boot/fonts/segoe.png
+	find romdisk_boot/debug -name '*.png' | xargs $(KOS_BASE)/utils/kmgenc/kmgenc -a4 
+	find romdisk_boot/debug -name '*.kmg' | xargs $(KOS_BASE)/addons/libtari/tools/bin/kompressor
+	find romdisk_boot/fonts -name '*.png' | xargs $(KOS_BASE)/utils/kmgenc/kmgenc -a4 
+	find romdisk_boot/fonts -name '*.kmg' | xargs $(KOS_BASE)/addons/libtari/tools/bin/kompressor
+	
+	find romdisk_boot -name '*.png' | xargs rm -f
+	find romdisk_boot -name '*.kmg' | xargs rm -f
+	
 	mkdir filesystem
 	mkdir filesystem/assets
 	mkdir filesystem/logo
@@ -39,6 +42,7 @@ genlevels:
 	cp -r $(KOS_BASE)/addons/libtari/assets/effects/* filesystem/effects		
 	cp -r filesystem/assets/sprites/dc/* filesystem/assets/sprites
 	rm -r -f filesystem/assets/sprites/dc
+	rm -r -f filesystem/assets/sprites/win
 	
 	find filesystem/ -name '*.png' | xargs $(KOS_BASE)/utils/kmgenc/kmgenc -a4 
 	find filesystem/ -name '*.kmg' | xargs $(KOS_BASE)/addons/libtari/tools/bin/kompressor
