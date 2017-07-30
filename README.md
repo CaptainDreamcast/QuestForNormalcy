@@ -1,2 +1,2 @@
-# QuestForNormalcy
-Rhythm game for Sega Dreamcast [Ludum Dare 39 entry]
+# Dream Fight 16 A.D.
+2D Fighter for Sega Dreamcast.
