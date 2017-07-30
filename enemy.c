@@ -17,7 +17,7 @@ static struct {
 	int mStage;
 } gData;
 
-static double gSpeeds[] = { 5, 10, 12.5, 15 };
+static double gSpeeds[] = { 5, 7, 10, 15 };
 
 void loadEnemies() {
 	gData.mIdleAnimation = createEmptyAnimation();

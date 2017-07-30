@@ -19,7 +19,7 @@ static void loadGameScreen() {
 	instantiateActor(Player);
 	instantiateActor(UserInterface);
 	instantiateActor(EnemyGenerator);
-	instantiateActor(ReadyTextBP);
+	instantiateActor(GoBP);
 	playTrack(3);
 }
 

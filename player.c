@@ -9,6 +9,7 @@
 #include "bg.h"
 #include "congratsscreen.h"
 #include "enemygenerator.h"
+#include "enemy.h"
 
 static struct {
 	TextureData mIdleTextures[10];
@@ -30,7 +31,7 @@ static struct {
 	int mIsTurning;
 } gData;
 
-static Duration gStateDurations[] = { 10*60, 30*60, 60*60, 60*60 };
+static Duration gStateDurations[] = { 10*60, 30*60, 60*60, 7*60 };
 
 static void loadPlayer(void* tData) {
 	(void)tData;
@@ -81,6 +82,7 @@ static void setNextIdleStage() {
 	setAnimationTransparency(gData.mNextAnimationID, gData.mInterpolation);
 	decreaseUIRange();
 	increaseEnemyGeneration();
+	increaseEnemySpeed();
 
 
 	if (gData.mIdleState == 4) {
@@ -94,6 +96,8 @@ static void setPreviousIdleStage() {
 		gData.mIdleState--;
 		increaseUIRange();
 		decreaseEnemyGeneration();
+		decreaseEnemySpeed();
+
 	}
 	gData.mInterpolation = 0;
 	changeAnimation(gData.mAnimationID, &gData.mIdleTextures[gData.mIdleState], createOneFrameAnimation(), makeRectangleFromTexture(gData.mIdleTextures[gData.mIdleState]));
@@ -110,7 +114,7 @@ static void updateInterpolation() {
 
 	double fac = 1.0 / gStateDurations[gData.mIdleState];
 
-	gData.mInterpolation += 0.3 *fac;
+	gData.mInterpolation += fac;
 	setAnimationTransparency(gData.mAnimationID, 1 - gData.mInterpolation);
 	setAnimationTransparency(gData.mNextAnimationID, gData.mInterpolation);
 

@@ -36,6 +36,9 @@ static void goTextOver(void* tCaller) {
 static void loadGoText(void* tData) {
 	(void)tData;
 
+	gData.mGoTexture = loadTexture("assets/sprites/GO.pkg");
+	gData.mGoSFX = loadSoundEffect("assets/music/GO.wav");
+
 	gData.mGoAnimationID = playOneFrameAnimationLoop(makePosition(200, 250, 7), &gData.mGoTexture);
 	gData.mIsGoTextActive = 1;
 
@@ -85,10 +88,10 @@ static void loadReadyTextBP(void* tData) {
 	(void)tData;
 
 	gData.mReadyTexture = loadTexture("assets/sprites/READY.pkg");
-	gData.mGoTexture = loadTexture("assets/sprites/GO.pkg");
+
 
 	gData.mReadySFX = loadSoundEffect("assets/music/READY.wav");
-	gData.mGoSFX = loadSoundEffect("assets/music/GO.wav");
+	
 
 	gData.mReadyAnimationID = playOneFrameAnimationLoop(makePosition(200, 250, 7), &gData.mReadyTexture);
 	gData.mIsReadyTextActive = 1;

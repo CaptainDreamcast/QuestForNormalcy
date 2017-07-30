@@ -3,6 +3,7 @@
 #include <tari/animation.h>
 
 #include "button.h"
+#include "bg.h"
 
 static struct {
 	TextureData mUIBG;
@@ -63,6 +64,7 @@ static void updateUserInterface(void* tData) {
 	gData.mRangeSize += 0.1*dx;
 
 	setRangeSize();
+
 }
 
 ActorBlueprint UserInterface = {
