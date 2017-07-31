@@ -12,7 +12,6 @@ filesystem
 *.html.mem
 *.data
 *.js
-*.zip
 
 windows/.vs/*
 windows/Release/*
